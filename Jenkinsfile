@@ -1,7 +1,9 @@
 pipeline { 
     environment { 
         repository = "beanbeeean/onboarding"  
-        dockerImage = '' 
+        dockerImage = ''
+	registry = 'public.ecr.aws/k3f1h3u2/btc3-ecr'
+	registryCredential = 'hjh-ecr' 
   }
   agent any
   
@@ -16,7 +18,7 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
-                    docker.withRegistry("https://" + registry, "ecr:ap-northeast-2:" + registryCredential){
+                    docker.withRegistry("https://" + $registry, "ecr:ap-northeast-2:" + $registryCredential){
                       docker.image("$repository:$BUILD_NUMBER").push()
                       docker.image("$BUILD_NUMBER:latest").push()
 			}  
