@@ -19,11 +19,6 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
-			sh {
-			 """
-			   echo "/hoGbl4PenTR0iuW0NZb9y6WfDC+LRkVyytqc74X" | docker login --username AWS --password-stdin https://public.ecr.aws/k3f1h3u2/btc3-ecr
-			 """
-			}
                     docker.withRegistry("https://public.ecr.aws/k3f1h3u2/btc3-ecr", "ecr:ap-northeast-2:" + registryCredential){
 	            docker.image("repository:${env.BUILD_NUMBER}").push()
                     docker.image("${env.BUILD_NUMBER}:latest").push()
