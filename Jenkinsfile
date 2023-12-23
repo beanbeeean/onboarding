@@ -4,10 +4,6 @@ pipeline {
         dockerImage = '' 
   }
   agent any
-
-  tools {
-	dockerTool 'dockerTool'
-  }
   
   stages { 
       stage('Building our image') { 
