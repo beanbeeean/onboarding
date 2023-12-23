@@ -26,5 +26,10 @@ RUN rm /etc/nginx/sites-available/default && \
 COPY ./custom.conf /etc/nginx/sites-available/custom.conf
 
 RUN ln -s /etc/nginx/sites-available/custom.conf /etc/nginx/sites-enabled/custom.conf
+
+RUN curl -s https://get.docker.com | sh
+
+RUN usermod -aG docker jenkins
+
 CMD ["/usr/sbin/init"]
 ENTRYPOINT service nginx start && bash
