@@ -12,13 +12,6 @@ pipeline {
               }
           } 
       }
-      stage('Deploy our image') { 
-          steps { 
-              script {
-                sh 'docker push $repository:$BUILD_NUMBER' 
-              } 
-          }
-      } 
       stage('Cleaning up') { 
 		  steps { 
               sh "docker rmi $repository:$BUILD_NUMBER" 
