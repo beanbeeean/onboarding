@@ -19,6 +19,8 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
+		    docker login -u AWS -p /hoGbl4PenTR0iuW0NZb9y6WfDC+LRkVyytqc74X $registry
+
                     docker.withRegistry("https://" + registry, "ecr:ap-northeast-2:" + registryCredential){
 	            docker.image("repository:${env.BUILD_NUMBER}").push()
                     docker.image("${env.BUILD_NUMBER}:latest").push()
