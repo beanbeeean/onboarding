@@ -19,9 +19,9 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
-                    docker.withRegistry("https://" + $registry, "ecr:ap-northeast-2:" + $registryCredential){
-	            docker.image("$repository:$BUILD_NUMBER").push()
-                    docker.image("$BUILD_NUMBER:latest").push()
+                    docker.withRegistry("https://" + ${registry}, "ecr:ap-northeast-2:" + ${registryCredential}){
+	            docker.image("${repository}:${BUILD_NUMBER}").push()
+                    docker.image("${BUILD_NUMBER}:latest").push()
 			}  
 		  }
                 }
