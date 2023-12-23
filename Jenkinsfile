@@ -15,6 +15,7 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
+	            def docker = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
                     docker.withRegistry("https://" + registry, "ecr:ap-northeast-2:" + registryCredential){
                       docker.image("$repository:$BUILD_NUMBER").push()
                       docker.image("$BUILD_NUMBER:latest").push()
