@@ -3,7 +3,12 @@ pipeline {
         repository = "beanbeeean/onboarding"  
         dockerImage = '' 
   }
-  agent any 
+  agent any
+
+  tools {
+	docker 'Docker'
+  }
+  
   stages { 
       stage('Building our image') { 
           steps { 
