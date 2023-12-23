@@ -11,8 +11,8 @@ pipeline {
   stages { 
       stage('Building our image') { 
           steps { 
-              script { 
-                  app = docker.build("$repository:$BUILD_NUMBER .") 
+              script {
+		sh "docker build -t $repository:$BUILD_NUMBER ." 
               }
           } 
       }
@@ -20,8 +20,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry("https://" + $registry, "ecr:ap-northeast-2:" + $registryCredential){
-                      app.push("${version}")
-                      app.push("latest")
+	            docker.image("$repository:$BUILD_NUMBER").push()
+                    docker.image("$BUILD_NUMBER:latest").push()
 			}  
 		  }
                 }
