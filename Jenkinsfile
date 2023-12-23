@@ -12,6 +12,15 @@ pipeline {
               }
           } 
       }
+      stage('Push Image') {
+            steps {
+                script{
+                    docker.withRegistry("https://" + registry, "ecr:ap-northeast-2:" + registryCredential)
+                        app.push("${version}") 
+                        app.push("latest")  
+                    }
+                }
+            }
       stage('Cleaning up') { 
 		  steps { 
               sh "docker rmi $repository:$BUILD_NUMBER" 
