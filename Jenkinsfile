@@ -3,7 +3,7 @@ pipeline {
         repository = "beanbeeean/onboarding"  
         dockerImage = ''
 	registry = 'public.ecr.aws/k3f1h3u2/btc3-ecr'
-	registryCredential = 'hjh-ecr'
+	registryCredential = 'hjh-cicd'
 	app = '' 
   }
   agent any
