@@ -3,7 +3,8 @@ pipeline {
         repository = "beanbeeean/onboarding"  
         dockerImage = ''
 	registry = 'public.ecr.aws/k3f1h3u2/btc3-ecr'
-	registryCredential = 'hjh-ecr' 
+	registryCredential = 'hjh-ecr'
+	app = '' 
   }
   agent any
   
@@ -11,7 +12,7 @@ pipeline {
       stage('Building our image') { 
           steps { 
               script { 
-                  sh "docker build -t $repository:$BUILD_NUMBER ." 
+                  app = docker.build("$repository:$BUILD_NUMBER .") 
               }
           } 
       }
@@ -19,8 +20,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry("https://" + $registry, "ecr:ap-northeast-2:" + $registryCredential){
-                      docker.image("$repository:$BUILD_NUMBER").push()
-                      docker.image("$BUILD_NUMBER:latest").push()
+                      app.push("${version}")
+                      app.push("latest")
 			}  
 		  }
                 }
