@@ -16,8 +16,8 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
-			sh "docker tag $repository:$BUILD_NUMBER $registry"
-			sh "docker push public.ecr.aws/k3f1h3u2/btc3-ecr/$BUILD_NUMBER"
+			sh "docker tag $repository:$BUILD_NUMBER $registry/$BUILD_NUMBER"
+			sh "docker push public.ecr.aws/k3f1h3u2/btc3-ecr"
 		  }
                 }
             }
