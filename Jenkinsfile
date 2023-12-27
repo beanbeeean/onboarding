@@ -19,10 +19,9 @@ pipeline {
       stage('Push Image') {
             steps {
                 script{
-                    docker.withRegistry("https://public.ecr.aws/k3f1h3u2/btc3-ecr", "ecr:ap-northeast-2:" + registryCredential){
-	            docker.image("repository:${env.BUILD_NUMBER}").push()
-                    docker.image("${env.BUILD_NUMBER}:latest").push()
-			}  
+			sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/k3f1h3u2/btc3-ecr"
+			sh "docker tag beanbeeean/onboarding:$BUILD_NUMBER public.ecr.aws/k3f1h3u2/btc3-ecr"
+			sh "docker push public.ecr.aws/k3f1h3u2/btc3-ecr"
 		  }
                 }
             }
