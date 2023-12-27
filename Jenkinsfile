@@ -9,15 +9,15 @@ pipeline {
       stage('Building our image') { 
           steps { 
               script {
-		sh "docker build -t $repository:test ." 
+		sh "docker build -t $repository:$BUILD_NUMBER ." 
               }
           } 
       }
       stage('Push Image') {
             steps {
                 script{
-			sh "docker tag $repository:test $registry"
-			sh "docker push public.ecr.aws/k3f1h3u2/btc3-ecr:test"
+			sh "docker tag $repository:$BUILD_NUMBER $registry"
+			sh "docker push public.ecr.aws/k3f1h3u2/btc3-ecr"
 		  }
                 }
             }
