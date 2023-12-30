@@ -4,13 +4,13 @@ metadata:
   name: {{ include "prod.fullname" . }}
   labels:
     {{- include "prod.labels" . | nindent 4 }}
-  spec:
-        type: {{ .Values.service.type }}
-        ports:
-          - port: {{ .Values.service.port }}
-          targetPort: {{ .Values.service.targetPort }}
-          nodePort: {{ .Values.service.nodePort }}
-          protocol: TCP
-          name: http
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      nodePort: {{ .Values.service.nodePort }}
+      protocol: TCP
+      name: http
   selector:
     {{- include "prod.selectorLabels" . | nindent 4 }}
