@@ -15,6 +15,9 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
+serviceAccount:
+  create: false
+
 image:
   repository: public.ecr.aws/k3f1h3u2/btc3-ecr
   tag: latest  # 또는 원하는 이미지 버전으로 변경
