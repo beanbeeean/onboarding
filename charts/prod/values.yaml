@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: public.ecr.aws/k3f1h3u2/btc3-ecr
-  tag: latest  # 또는 원하는 이미지 버전으로 변경
+  tag: 52  # 또는 원하는 이미지 버전으로 변경
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
