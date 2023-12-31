@@ -38,8 +38,6 @@ pipeline {
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
 			sh "git checkout main"
-			sh "git remote remove origin"
-			sh "git remote add origin https://beanbeeean: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@github.com/beanbeeean/onboarding.git"
                         sh "git push origin main"
                     }
                 }
