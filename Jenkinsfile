@@ -37,7 +37,6 @@ pipeline {
                         sh "git add charts"
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
-                        sh "git branch -M main"
                         sh "git push origin main"
                     }
                 }
