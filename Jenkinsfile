@@ -36,9 +36,8 @@ pipeline {
                         sh "git config user.name 'beanbeeean'"
                         sh "git add charts"
                         sh "git commit -m 'update deployment'"
-			sh "git log"
-			sh "git checkout main"
-                        sh "git branch -M main"                   
+                        sh "git branch -M main"
+			sh "git remote set-url origin https://beanbeeean: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@github.com/beanbeeean/onboarding.git"                   
                         sh "git push origin main"
                     }
                 }
