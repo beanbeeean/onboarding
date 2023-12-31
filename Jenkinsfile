@@ -39,7 +39,7 @@ pipeline {
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
 			sh "git checkout main"
-			sh "git pull origin main"
+			sh "git pull origin main --no-rebase"
                         sh "git push -u origin +main"
                     }
                 }
