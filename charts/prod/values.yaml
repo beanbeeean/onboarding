@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: public.ecr.aws/k3f1h3u2/btc3-ecr
-  tag: 52
+  tag: 83
   pullPolicy: Always
 
 imagePullSecrets: []
