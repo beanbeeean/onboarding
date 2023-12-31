@@ -34,7 +34,6 @@ pipeline {
 	 sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
 	 sh "git config user.email 'beanbeeean@naver.com'"
 	 sh "git config user.name 'beanbeeean'"
-	 sh "git remote add origin https://github.com/beanbeeean/onboarding.git"
 	 sh "git add charts"
 	 sh "git commit -m 'update deployment'"
 	 sh "git branch -M main"
