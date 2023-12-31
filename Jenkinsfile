@@ -31,7 +31,7 @@ pipeline {
 	steps {
          git branch: 'main', credentialsId: 'hjh-github',
                 url: 'https://github.com/beanbeeean/onboarding.git'
-	 sh "sed -i \'s/$registry:.*\$/$registry:$BUILD_NUMBER/g\' deployment.yaml"
+	 sh "sed -i 's/$registry:.*\$/$registry:$BUILD_NUMBER/g' ./charts/prod/templates/deployment.yaml"
 	 sh "git add charts"
 	 sh "git commit -m 'update deployment'"
 	 sh "git branch -M main"
