@@ -32,8 +32,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]) {
                         sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
-                        sh "git config user.email 'beanbeeean@naver.com'"
-                        sh "git config user.name 'beanbeeean'"
+                        sh "git config --global user.email 'beanbeeean@naver.com'"
+                        sh "git config --global user.name 'beanbeeean'"
                         sh "git add charts"
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
