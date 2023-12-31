@@ -34,6 +34,7 @@ pipeline {
                         sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
                         sh "git config --global user.email 'beanbeeean@naver.com'"
                         sh "git config --global user.name 'beanbeeean'"
+			sh "git config --global credential.helper store"
                         sh "git add charts"
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
