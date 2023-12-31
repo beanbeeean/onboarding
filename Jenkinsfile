@@ -34,10 +34,11 @@ pipeline {
                         sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
                         sh "git config user.email 'beanbeeean@naver.com'"
                         sh "git config user.name 'beanbeeean'"
-			sh "git checkout main"
-                        sh "git branch -M main"
                         sh "git add charts"
-                        sh "git commit -m 'update deployment'"                   
+                        sh "git commit -m 'update deployment'"
+			sh "git log"
+			sh "git checkout main"
+                        sh "git branch -M main"                   
                         sh "git push origin main"
                     }
                 }
