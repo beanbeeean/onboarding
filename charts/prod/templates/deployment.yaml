@@ -48,7 +48,7 @@ spec:
             httpGet:
               path: /
               port: http
-           command: ["/bin/bash", "-c", "nginx -g 'daemon off;' && while :; do echo '.'; sleep 5 ; done"]
+          command: ["/bin/bash", "-c", "nginx -g 'daemon off;' && while :; do echo '.'; sleep 5 ; done"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
