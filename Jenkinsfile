@@ -38,7 +38,7 @@ pipeline {
                         sh "git commit -m 'update deployment'"
 			sh "git branch"
 			sh "git checkout main"
-                        sh "git push origin main"
+                        sh "git push -u origin main"
                     }
                 }
             }
