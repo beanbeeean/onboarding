@@ -30,7 +30,7 @@ pipeline {
       stage('Deploy') {
 	steps {
 		script {
-		withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]{
+		     withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')] {
 	    	 	 sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
 			 sh "git config user.email 'beanbeeean@naver.com'"
         		 sh "git config user.name 'beanbeeean'"
