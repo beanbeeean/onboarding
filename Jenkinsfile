@@ -31,19 +31,21 @@ pipeline {
         stage('Deploy') {
             steps {
 		     withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]) {
-			sh "rm -rf ./onboarding-argo"
-			sh "git clone git@github.com:beanbeeean/onboarding-argo.git"
-			sh "cd ./onboarding-argo"
-			sh "ls -a"
-                        sh "git config --global user.email 'beanbeeean@naver.com'"
-                        sh "git config --global user.name 'beanbeeean'"
-			sh "git config --global credential.helper store"
-			sh "git remote set-url origin git@github.com:beanbeeean/onboarding-argo.git"
-			sh "git pull origin main"
-			sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' onboarding-argo/charts/prod/values.yaml"
-			sh "git add ."
-                        sh "git commit -m 'update deployment'"
-                        sh "git push -u origin main"
+			sh """
+   				rm -rf ./onboarding-argo
+       				git clone git@github.com:beanbeeean/onboarding-argo.git
+	   			cd ./onboarding-argo
+				ls -a
+	                        git config --global user.email 'beanbeeean@naver.com'
+	                        git config --global user.name 'beanbeeean'
+				git config --global credential.helper store
+				git remote set-url origin git@github.com:beanbeeean/onboarding-argo.git
+				git pull origin main
+				sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' onboarding-argo/charts/prod/values.yaml
+				git add .
+	                        git commit -m 'update deployment'
+	                        git push -u origin main
+   			   """
                     }
             }
         }
