@@ -40,8 +40,7 @@ pipeline {
 	                        git config --global user.name 'beanbeeean'
 				git config --global credential.helper store
 				git remote set-url origin git@github.com:beanbeeean/onboarding-argo.git
-				git pull origin main
-				sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' onboarding-argo/charts/prod/values.yaml
+				sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml
 				git add .
 	                        git commit -m 'update deployment'
 	                        git push -u origin main
