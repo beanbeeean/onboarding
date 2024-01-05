@@ -41,7 +41,7 @@ pipeline {
 			sh "git config --global credential.helper store"
                         sh "git add ."
                         sh "git commit -m 'update deployment'"
-                        sh "git push origin main"
+                        sh "git push -u origin main"
                     }
             }
         }
