@@ -41,7 +41,7 @@ pipeline {
 			sh "git config --global credential.helper store"
                         sh "git add ."
                         sh "git commit -m 'update deployment'"
-                        sh "git push -u origin main"
+                        sh "git push -u origin main git@github.com:beanbeeean/onboarding-argo.git"
                     }
             }
         }
