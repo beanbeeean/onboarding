@@ -25,24 +25,24 @@ pipeline {
         stage('Cleaning up') {
             steps {
                 sh "docker rmi $repository:$BUILD_NUMBER"
+		sh "ls -a"
             }
         }
         stage('Deploy') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]) {
-                        sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' ./charts/prod/values.yaml"
+		     withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]) {
+			sh "rm -rf onboarding-argo"
+			sh "git clone git@github.com:beanbeeean/onboarding-argo.git"
+			sh "cd onboarding-argo"
+			sh "ls -a"
+                        sh "sed -i 's/tag:.*/tag: $BUILD_NUMBER/g' onboarding-argo/charts/prod/values.yaml"
                         sh "git config --global user.email 'beanbeeean@naver.com'"
                         sh "git config --global user.name 'beanbeeean'"
 			sh "git config --global credential.helper store"
-                        sh "git add charts"
+                        sh "git add ."
                         sh "git commit -m 'update deployment'"
-			sh "git branch"
-			sh "git checkout main"
-			sh "git pull origin main --no-rebase"
-                        sh "git push -u origin +main"
+                        sh "git push origin main"
                     }
-                }
             }
         }
     }
