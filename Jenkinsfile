@@ -42,6 +42,7 @@ pipeline {
 			sh "git config --global credential.helper store"
                         sh "git add ."
                         sh "git commit -m 'update deployment'"
+			sh "git remote set-url origin git@github.com:beanbeeean/onboarding-argo.git"
                         sh "git push -u origin main"
                     }
             }
