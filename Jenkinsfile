@@ -40,9 +40,9 @@ pipeline {
                         sh "git config --global user.email 'beanbeeean@naver.com'"
                         sh "git config --global user.name 'beanbeeean'"
 			sh "git config --global credential.helper store"
-                        sh "git add ."
-                        sh "git commit -m 'update deployment'"
 			sh "git remote set-url origin git@github.com:beanbeeean/onboarding-argo.git"
+			sh "git add ."
+                        sh "git commit -m 'update deployment'"
                         sh "git push -u origin main"
                     }
             }
