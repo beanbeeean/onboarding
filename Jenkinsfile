@@ -31,9 +31,9 @@ pipeline {
         stage('Deploy') {
             steps {
 		     withCredentials([usernamePassword(credentialsId: 'hjh-github', usernameVariable: 'username', passwordVariable: 'password')]) {
-			sh "rm -rf onboarding-argo"
+			sh "rm -rf ./onboarding-argo"
 			sh "git clone git@github.com:beanbeeean/onboarding-argo.git"
-			sh "cd onboarding-argo"
+			sh "cd ./onboarding-argo"
 			sh "ls -a"
                         sh "git config --global user.email 'beanbeeean@naver.com'"
                         sh "git config --global user.name 'beanbeeean'"
