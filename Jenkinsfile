@@ -20,7 +20,19 @@ pipeline {
                     sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $registry"
                     sh "docker tag $repository:$BUILD_NUMBER $registry:$BUILD_NUMBER"
                     sh "docker push $registry:$BUILD_NUMBER"
-	            sh "aws ecr-public describe-images --repository-name $registry --query 'sort_by(imageDetails,& imagePushedAt)[*].imageDigest' --output text"
+                }
+            }
+        }
+	stage('Cleanup Old Images') {
+            steps {
+                script {
+                    // 삭제할 이미지의 imageDigest를 조회합니다.
+                    def deleteDigests = sh(script: "aws ecr-public describe-images --repository-name $repository --query 'sort_by(imageDetails,& imagePushedAt)[*].imageDigest' --output text | head -n -$IMAGES_TO_KEEP", returnStdout: true).trim()
+
+                    // 조회된 각 imageDigest에 대하여 삭제를 수행합니다.
+                    deleteDigests.split("\n").each { digest ->
+                        sh "aws ecr-public batch-delete-image --repository-name $repository --image-ids imageDigest=$digest"
+                    }
                 }
             }
         }
