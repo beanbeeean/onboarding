@@ -20,7 +20,7 @@ pipeline {
                     sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $registry"
                     sh "docker tag $repository:$BUILD_NUMBER $registry:$BUILD_NUMBER"
                     sh "docker push $registry:$BUILD_NUMBER"
-	            sh "aws ecr-public describe-images --repository-name $registry --query 'sort_by(imageDetails,& imagePushedAt)[*].imageDigest' --output text | head -n -$IMAGES_TO_KEEP | xargs -I {} aws ecr-public batch-delete-image --repository-name $registry --image-ids imageDigest={}"
+	            sh "aws ecr-public describe-images --repository-name $registry --query 'sort_by(imageDetails,& imagePushedAt)[*].imageDigest' --output text"
                 }
             }
         }
